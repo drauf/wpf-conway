@@ -34,7 +34,7 @@
 
     <StackPanel Orientation="Vertical" >
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_New Game"/>
+            <MenuItem Header="_New Game" Click="NewGame_Click"/>
             <MenuItem Header="_Save" ItemsSource="{Binding Path=SaveSlots}" Click="Save_Click">
                 <MenuItem.ItemTemplate>
                     <DataTemplate>

@@ -8,13 +8,11 @@ namespace Conway.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly Grid _grid;
-        private static readonly int Length = 50;
-        private static readonly int Width = 75;
 
         public List<LoadSaveSlot> SaveSlots { get; }
         public List<LoadSaveSlot> LoadSlots { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(int width, int length)
         {
             SaveSlots = new List<LoadSaveSlot>();
             LoadSlots = new List<LoadSaveSlot>();
@@ -24,7 +22,7 @@ namespace Conway.ViewModels
                 LoadSlots.Add(new LoadSaveSlot { Id = id, Name = $"Load {id}" });
             }
 
-            _grid = new Grid(Length, Width);
+            _grid = new Grid(width, length);
             List = _grid.GetAsObservableCollection();
         }
 

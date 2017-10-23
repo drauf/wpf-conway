@@ -10,12 +10,12 @@ namespace Conway.Models
 
         public Cell[,] State { get; set; }
 
-        public Grid(int n, int m)
+        public Grid(int width, int length)
         {
-            State = new Cell[n, m];
-            for (var x = 0; x < n; x++)
+            State = new Cell[length, width];
+            for (var x = 0; x < length; x++)
             {
-                for (var y = 0; y < m; y++)
+                for (var y = 0; y < width; y++)
                 {
                     State[x, y] = new Cell(CellType.Dead);
                 }

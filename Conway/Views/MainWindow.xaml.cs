@@ -7,12 +7,12 @@ namespace Conway.Views
 {
     public partial class MainWindow
     {
-        private readonly MainWindowViewModel _viewModel;
+        private MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new MainWindowViewModel();
+            _viewModel = new MainWindowViewModel(75, 50);
             DataContext = _viewModel;
         }
 
@@ -25,6 +25,16 @@ namespace Conway.Views
         {
             var index = (int)((Button)sender).Tag;
             _viewModel.ChangeCell(index);
+        }
+
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            var newGameDialog = new NewGameDialog();
+            if (newGameDialog.ShowDialog() == true)
+            {
+                _viewModel = new MainWindowViewModel(int.Parse(newGameDialog.X), int.Parse(newGameDialog.Y));
+                DataContext = _viewModel;
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
