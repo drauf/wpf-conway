@@ -76,6 +76,8 @@
     <Compile Include="Models\CellDisplay.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\LoadSaveSlot.cs" />
+    <Compile Include="Models\LoadSaveState.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

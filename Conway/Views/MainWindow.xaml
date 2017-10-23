@@ -33,6 +33,24 @@
     </Window.Resources>
 
     <StackPanel Orientation="Vertical" >
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_New Game"/>
+            <MenuItem Header="_Save" ItemsSource="{Binding Path=SaveSlots}" Click="Save_Click">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+            </MenuItem>
+            <MenuItem Header="_Load" ItemsSource="{Binding Path=LoadSlots}" Click="Load_Click">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+            </MenuItem>
+        </Menu>
+
         <StackPanel Orientation="Horizontal">
             <Label Content="Current generation:" Width="150" HorizontalContentAlignment="Center" />
             <Label Content="{Binding Generation, Mode=OneWay}" Width="100" HorizontalContentAlignment="Right" />
@@ -40,6 +58,7 @@
             <xctk:IntegerUpDown Value="1" Width="50" Increment="1" Minimum="1" Maximum="100"  Name="GenerationJump" />
             <Button Content="Generate" Width="74" Margin="5,0,0,0" Click="GenerateButton_Click"/>
         </StackPanel>
+
         <ItemsControl x:Name="List" ItemTemplate="{DynamicResource DataTemplateForItemInItemsControl}" ItemsSource="{Binding List, Mode=OneWay}"/>
     </StackPanel>
 </Window>

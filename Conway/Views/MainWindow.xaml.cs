@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Conway.Models;
 using Conway.ViewModels;
 
 namespace Conway.Views
@@ -24,6 +25,22 @@ namespace Conway.Views
         {
             var index = (int)((Button)sender).Tag;
             _viewModel.ChangeCell(index);
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = e.OriginalSource as MenuItem;
+            var slot = menuItem.DataContext as LoadSaveSlot;
+
+            _viewModel.SaveGame(slot.Id);
+        }
+
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = e.OriginalSource as MenuItem;
+            var slot = menuItem.DataContext as LoadSaveSlot;
+
+            _viewModel.LoadGame(slot.Id);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Conway.Enums;
+﻿using System;
+using Conway.Enums;
 
 namespace Conway.Models
 {
+    [Serializable]
     public class Cell
     {
         public CellType Type { get; set; }

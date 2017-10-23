@@ -6,24 +6,25 @@ namespace Conway.Models
 {
     public class Grid
     {
-        private readonly Cell[,] _grid;
         private const int IndexCodingValue = 42000;
+
+        public Cell[,] State { get; set; }
 
         public Grid(int n, int m)
         {
-            _grid = new Cell[n, m];
+            State = new Cell[n, m];
             for (var x = 0; x < n; x++)
             {
                 for (var y = 0; y < m; y++)
                 {
-                    _grid[x, y] = new Cell(CellType.Dead);
+                    State[x, y] = new Cell(CellType.Dead);
                 }
             }
         }
 
         public void ChangeCell(int index)
         {
-            var cell = _grid[index / IndexCodingValue, index % IndexCodingValue];
+            var cell = State[index / IndexCodingValue, index % IndexCodingValue];
 
             switch (cell.Type)
             {
@@ -48,16 +49,16 @@ namespace Conway.Models
         {
             var list = new ObservableCollection<ObservableCollection<CellDisplay>>();
 
-            for (var x = 0; x <= _grid.GetUpperBound(0); x++)
+            for (var x = 0; x <= State.GetUpperBound(0); x++)
             {
                 list.Add(new ObservableCollection<CellDisplay>());
 
-                for (var y = 0; y <= _grid.GetUpperBound(1); y++)
+                for (var y = 0; y <= State.GetUpperBound(1); y++)
                 {
                     list[x].Add(new CellDisplay
                     {
                         Index = x * IndexCodingValue + y,
-                        Type = _grid[x, y].Type
+                        Type = State[x, y].Type
                     });
                 }
             }
@@ -72,14 +73,14 @@ namespace Conway.Models
 
         private void CountNeighbours()
         {
-            var maxI = _grid.GetUpperBound(0);
-            var maxJ = _grid.GetUpperBound(1);
+            var maxI = State.GetUpperBound(0);
+            var maxJ = State.GetUpperBound(1);
 
             for (var x = 0; x <= maxI; x++)
             {
                 for (var y = 0; y <= maxJ; y++)
                 {
-                    var cell = _grid[x, y];
+                    var cell = State[x, y];
                     cell.NumberOfNeighbours = 0;
 
                     int previousX = x > 0 ? x - 1 : maxI;
@@ -88,21 +89,21 @@ namespace Conway.Models
                     int nextY = y < maxJ ? y + 1 : 0;
 
                     // check all neighbours, clock-wise
-                    if (_grid[previousX, previousY].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[previousX, y].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[previousX, nextY].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[x, nextY].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[nextX, nextY].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[nextX, y].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[nextX, previousY].IsAlive()) cell.NumberOfNeighbours++;
-                    if (_grid[x, previousY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[previousX, previousY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[previousX, y].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[previousX, nextY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[x, nextY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[nextX, nextY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[nextX, y].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[nextX, previousY].IsAlive()) cell.NumberOfNeighbours++;
+                    if (State[x, previousY].IsAlive()) cell.NumberOfNeighbours++;
                 }
             }
         }
 
         private void UpdatePopulation()
         {
-            foreach (var cell in _grid)
+            foreach (var cell in State)
             {
                 switch (cell.Type)
                 {
