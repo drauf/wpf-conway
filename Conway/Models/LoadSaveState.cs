@@ -10,7 +10,7 @@ namespace Conway.Models
 
         static LoadSaveState()
         {
-            Grid = new Cell[LoadSaveSlots][,];
+            Grid = new Cell[LoadSaveSlots + 1][,];
         }
 
         public static bool IsEmpty(int slot)
