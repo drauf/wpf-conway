@@ -8,8 +8,8 @@ namespace Conway.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly Grid _grid;
-        private static readonly int Length = 20;
-        private static readonly int Width = 20;
+        private static readonly int Length = 50;
+        private static readonly int Width = 75;
 
         public List<LoadSaveSlot> SaveSlots { get; }
         public List<LoadSaveSlot> LoadSlots { get; }
