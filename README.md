@@ -1,11 +1,11 @@
 # wpf-conway
 Conway's Game of Life implementation using WPF
 
+![screenshot of the application](https://github.com/drauf/wpf-conway/blob/master/screenshot.png?raw=true)
+
 ### Areas for improvement
-The UI is displayed as a grid of buttons, backed up by an observable list of observable lists. As a result, if just one cell
-changes, the entire grid has to be redrawn. This results in a very sluggish experience when using bigger game boards. The 
-application should be updated to only redraw the cells that changed or at least use something more efficient than a grid of 
-buttons (like a single canvas).
+Currently Grid model contains a lot of logic - extract it to a separate class or move it to the view model.  
+The project contains only placeholders for tests, listed in the GridTest and LoadSaveServiceTest files. Those should be implemented.
 
 ### Original requirements
 POL:
