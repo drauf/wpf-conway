@@ -48,21 +48,33 @@ namespace Conway.Models
         public ObservableCollection<ObservableCollection<CellDisplay>> GetAsObservableCollection()
         {
             var list = new ObservableCollection<ObservableCollection<CellDisplay>>();
-
             for (var x = 0; x <= State.GetUpperBound(0); x++)
             {
                 list.Add(new ObservableCollection<CellDisplay>());
-
                 for (var y = 0; y <= State.GetUpperBound(1); y++)
                 {
                     list[x].Add(new CellDisplay
                     {
                         Index = x * IndexCodingValue + y,
-                        Type = State[x, y].Type
+                        Type = CellType.Dead
                     });
                 }
             }
             return list;
+        }
+
+        public void UpdateObservableCollection(ObservableCollection<ObservableCollection<CellDisplay>> list)
+        {
+            for (var x = 0; x <= State.GetUpperBound(0); x++)
+            {
+                for (var y = 0; y <= State.GetUpperBound(1); y++)
+                {
+                    if (list[x][y].Type != State[x, y].Type)
+                    {
+                        list[x][y].Type = State[x, y].Type;
+                    }
+                }
+            }
         }
 
         public void GenerateNextPopulation()

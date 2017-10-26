@@ -11,16 +11,16 @@ namespace Conway
         object IValueConverter.Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null) return null;
-            switch (((CellDisplay)value).Type)
+            switch ((CellType)value)
             {
                 case CellType.NewAlive:
-                    return Brushes.Aquamarine;
+                    return 0;
                 case CellType.Alive:
-                    return Brushes.Chartreuse;
+                    return 1;
                 case CellType.NewDead:
-                    return Brushes.DarkOrchid;
+                    return 2;
                 case CellType.Dead:
-                    return Brushes.WhiteSmoke;
+                    return 3;
                 default:
                     return null;
             }

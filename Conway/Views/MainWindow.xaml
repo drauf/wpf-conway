@@ -11,7 +11,26 @@
     <Window.Resources>
         <local:CellDisplayToColorConverter x:Key="CellDisplayToColorConverter"/>
         <DataTemplate x:Key="DataTemplateForLabel">
-            <Button Tag="{Binding Index}" Click="Cell_Click" Background="{Binding Mode=OneWay, Converter={StaticResource CellDisplayToColorConverter}}" Height="14" Width="14" Margin="1,1,1,1" />
+            <Button Tag="{Binding Index}" Click="Cell_Click" Height="14" Width="14" Margin="1,1,1,1">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Type, Converter={StaticResource CellDisplayToColorConverter}}" Value="0">
+                                <Setter Property="Background" Value="LawnGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Type, Converter={StaticResource CellDisplayToColorConverter}}" Value="1">
+                                <Setter Property="Background" Value="ForestGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Type, Converter={StaticResource CellDisplayToColorConverter}}" Value="2">
+                                <Setter Property="Background" Value="Purple"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Type, Converter={StaticResource CellDisplayToColorConverter}}" Value="3">
+                                <Setter Property="Background" Value="WhiteSmoke"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplateForItemInItemsControl">

@@ -78,6 +78,7 @@
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\LoadSaveSlot.cs" />
     <Compile Include="Models\LoadSaveState.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\NewGameDialog.xaml.cs">
       <DependentUpon>NewGameDialog.xaml</DependentUpon>

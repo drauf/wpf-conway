@@ -53,7 +53,7 @@ namespace Conway.ViewModels
             while (jump-- > 0)
             {
                 _grid.GenerateNextPopulation();
-                List = _grid.GetAsObservableCollection();
+                _grid.UpdateObservableCollection(List);
                 Generation++;
             }
         }
@@ -61,7 +61,7 @@ namespace Conway.ViewModels
         public void ChangeCell(int index)
         {
             _grid.ChangeCell(index);
-            List = _grid.GetAsObservableCollection();
+            _grid.UpdateObservableCollection(List);
         }
 
         public void SaveGame(int slot)
