@@ -18,3 +18,13 @@ Wskazana mozliwosc odczytu/zapisu stanu poczatkowego/biezacego
 Aplikacja powinna obejmowac takie mechanizmy/elementy jak Binding, Menu, Okna dialogowe, szablony (prezentacja pojedynczej komorki), style, triggery
 Wskazana realizacja presentacji/edycji stanu automatu jako kontrolki (najlepiej z wydzielomym modelem)
 ```
+ENG:
+```
+The application should present Conway's Game of Life
+The application should allow defining the initial pattern and looking at the next generations with the specified jump
+The application should allow to customize, for example, the number of generations to be calculated each time, the size of the board, and so on.
+Advised to visually differentiate the dying/newborn/area that was already inhabited
+Advised to enable reading/writing of the initial/current state
+The application should include such mechanisms/elements as Binding, Menu, Dialogs, Templates (single cell presentation), styles, triggers
+Recommended implementation of the presentation as a control (preferably with a separate model)
+```
