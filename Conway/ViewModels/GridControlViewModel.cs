@@ -9,7 +9,7 @@ namespace Conway.ViewModels
     {
         private readonly Grid _grid;
 
-        public GridControlViewModel(int width, int length)
+        public GridControlViewModel(int width = 75, int length = 50)
         {
             _grid = new Grid(width, length);
             List = _grid.GetAsObservableCollection();

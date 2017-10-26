@@ -4,6 +4,7 @@ using Conway.Enums;
 
 namespace Conway.Models
 {
+    // todo: export logic into a separate class
     public class Grid
     {
         private const int IndexCodingValue = 42000;

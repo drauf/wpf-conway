@@ -11,7 +11,7 @@ namespace Conway.Views
         public GridControl()
         {
             InitializeComponent();
-            _viewModel = new GridControlViewModel(75, 50);
+            _viewModel = new GridControlViewModel();
             DataContext = _viewModel;
         }
 
