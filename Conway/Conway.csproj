@@ -77,12 +77,20 @@
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\LoadSaveSlot.cs" />
-    <Compile Include="Models\LoadSaveState.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Service\LoadSaveService.cs" />
+    <Compile Include="ViewModels\GridControlViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\GridControl.xaml.cs">
+      <DependentUpon>GridControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewGameDialog.xaml.cs">
       <DependentUpon>NewGameDialog.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\GridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

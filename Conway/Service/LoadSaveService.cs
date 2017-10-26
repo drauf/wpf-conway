@@ -1,15 +1,27 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Conway.Models;
 
-namespace Conway.Models
+namespace Conway.Service
 {
-    public static class LoadSaveState
+    public static class LoadSaveService
     {
-        public const int LoadSaveSlots = 10;
-        private static Cell[][,] Grid { get; }
+        private const int LoadSaveSlots = 10;
 
-        static LoadSaveState()
+        private static Cell[][,] Grid { get; }
+        public static List<LoadSaveSlot> LoadSlots { get; }
+        public static List<LoadSaveSlot> SaveSlots { get; }
+
+        static LoadSaveService()
         {
+            LoadSlots = new List<LoadSaveSlot>();
+            SaveSlots = new List<LoadSaveSlot>();
+            for (var id = 1; id <= LoadSaveSlots; id++)
+            {
+                LoadSlots.Add(new LoadSaveSlot { Id = id, Name = $"Load {id}" });
+                SaveSlots.Add(new LoadSaveSlot { Id = id, Name = $"Save {id}" });
+            }
             Grid = new Cell[LoadSaveSlots + 1][,];
         }
 

@@ -7,24 +7,15 @@ namespace Conway.Views
 {
     public partial class MainWindow
     {
-        private MainWindowViewModel _viewModel;
-
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new MainWindowViewModel(75, 50);
-            DataContext = _viewModel;
+            DataContext = new MainWindowViewModel();
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.Generate(GenerationJump.Value.GetValueOrDefault(1));
-        }
-
-        private void Cell_Click(object sender, RoutedEventArgs e)
-        {
-            var index = (int)((Button)sender).Tag;
-            _viewModel.ChangeCell(index);
+            GridControl.Generate(GenerationJump.Value.GetValueOrDefault(1));
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
@@ -32,25 +23,20 @@ namespace Conway.Views
             var newGameDialog = new NewGameDialog();
             if (newGameDialog.ShowDialog() == true)
             {
-                _viewModel = new MainWindowViewModel(int.Parse(newGameDialog.X), int.Parse(newGameDialog.Y));
-                DataContext = _viewModel;
+                GridControl.NewGame(int.Parse(newGameDialog.X), int.Parse(newGameDialog.Y));
             }
-        }
-
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            var menuItem = e.OriginalSource as MenuItem;
-            var slot = menuItem.DataContext as LoadSaveSlot;
-
-            _viewModel.SaveGame(slot.Id);
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = e.OriginalSource as MenuItem;
-            var slot = menuItem.DataContext as LoadSaveSlot;
+            if (menuItem?.DataContext is LoadSaveSlot slot) GridControl.LoadGame(slot.Id);
+        }
 
-            _viewModel.LoadGame(slot.Id);
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = e.OriginalSource as MenuItem;
+            if (menuItem?.DataContext is LoadSaveSlot slot) GridControl.SaveGame(slot.Id);
         }
     }
 }

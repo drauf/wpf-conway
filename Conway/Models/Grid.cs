@@ -12,6 +12,11 @@ namespace Conway.Models
 
         public Grid(int width, int length)
         {
+            GenerateNewGrid(width, length);
+        }
+
+        public void GenerateNewGrid(int width, int length)
+        {
             State = new Cell[length, width];
             for (var x = 0; x < length; x++)
             {

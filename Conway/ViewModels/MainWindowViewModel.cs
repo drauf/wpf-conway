@@ -1,81 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Conway.Models;
+using Conway.Service;
 
 namespace Conway.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private readonly Grid _grid;
-
-        public List<LoadSaveSlot> SaveSlots { get; }
-        public List<LoadSaveSlot> LoadSlots { get; }
-
-        public MainWindowViewModel(int width, int length)
-        {
-            SaveSlots = new List<LoadSaveSlot>();
-            LoadSlots = new List<LoadSaveSlot>();
-            for (var id = 1; id <= LoadSaveState.LoadSaveSlots; id++)
-            {
-                SaveSlots.Add(new LoadSaveSlot { Id = id, Name = $"Save {id}" });
-                LoadSlots.Add(new LoadSaveSlot { Id = id, Name = $"Load {id}" });
-            }
-
-            _grid = new Grid(width, length);
-            List = _grid.GetAsObservableCollection();
-        }
-
-        private int _generation;
-        public int Generation
-        {
-            get => _generation;
-            set
-            {
-                _generation = value;
-                OnPropertyChanged("Generation");
-            }
-        }
-
-        private ObservableCollection<ObservableCollection<CellDisplay>> _list;
-        public ObservableCollection<ObservableCollection<CellDisplay>> List
-        {
-            get => _list;
-            set
-            {
-                _list = value;
-                OnPropertyChanged("List");
-            }
-        }
-
-        public void Generate(int jump)
-        {
-            while (jump-- > 0)
-            {
-                _grid.GenerateNextPopulation();
-                _grid.UpdateObservableCollection(List);
-                Generation++;
-            }
-        }
-
-        public void ChangeCell(int index)
-        {
-            _grid.ChangeCell(index);
-            _grid.UpdateObservableCollection(List);
-        }
-
-        public void SaveGame(int slot)
-        {
-            LoadSaveState.Save(slot, _grid.State);
-        }
-
-        public void LoadGame(int slot)
-        {
-            if (LoadSaveState.IsEmpty(slot)) return;
-
-            _grid.State = LoadSaveState.Load(slot);
-            List = _grid.GetAsObservableCollection();
-        }
+        public static List<LoadSaveSlot> LoadSlots => LoadSaveService.LoadSlots;
+        public static List<LoadSaveSlot> SaveSlots => LoadSaveService.SaveSlots;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
