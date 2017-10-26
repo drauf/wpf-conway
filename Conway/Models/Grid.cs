@@ -22,7 +22,11 @@ namespace Conway.Models
             {
                 for (var y = 0; y < width; y++)
                 {
-                    State[x, y] = new Cell(CellType.Dead);
+                    State[x, y] = new Cell
+                    {
+                        Type = CellType.Dead,
+                        Index = x * IndexCodingValue + y
+                    };
                 }
             }
         }
@@ -50,25 +54,21 @@ namespace Conway.Models
             }
         }
 
-        public ObservableCollection<ObservableCollection<CellDisplay>> GetAsObservableCollection()
+        public ObservableCollection<ObservableCollection<Cell>> GetAsObservableCollection()
         {
-            var list = new ObservableCollection<ObservableCollection<CellDisplay>>();
+            var list = new ObservableCollection<ObservableCollection<Cell>>();
             for (var x = 0; x <= State.GetUpperBound(0); x++)
             {
-                list.Add(new ObservableCollection<CellDisplay>());
+                list.Add(new ObservableCollection<Cell>());
                 for (var y = 0; y <= State.GetUpperBound(1); y++)
                 {
-                    list[x].Add(new CellDisplay
-                    {
-                        Index = x * IndexCodingValue + y,
-                        Type = CellType.Dead
-                    });
+                    list[x].Add(State[x, y]);
                 }
             }
             return list;
         }
 
-        public void UpdateObservableCollection(ObservableCollection<ObservableCollection<CellDisplay>> list)
+        public void UpdateObservableCollection(ObservableCollection<ObservableCollection<Cell>> list)
         {
             for (var x = 0; x <= State.GetUpperBound(0); x++)
             {

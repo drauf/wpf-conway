@@ -73,7 +73,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\CellDisplay.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\LoadSaveSlot.cs" />

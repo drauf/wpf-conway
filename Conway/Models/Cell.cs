@@ -1,25 +1,36 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Conway.Annotations;
 using Conway.Enums;
 
 namespace Conway.Models
 {
     [Serializable]
-    public class Cell
+    public class Cell : INotifyPropertyChanged
     {
-        public CellType Type { get; set; }
+        public int Index { get; set; }
         public int NumberOfNeighbours { get; set; }
 
-        public Cell(CellType type) : this(type, 0) { }
-
-        private Cell(CellType type, int numberOfNeighbours)
+        private CellType _type;
+        public CellType Type
         {
-            Type = type;
-            NumberOfNeighbours = numberOfNeighbours;
+            get => _type;
+            set
+            {
+                _type = value;
+                OnPropertyChanged();
+            }
         }
 
-        public bool IsAlive()
+        public bool IsAlive() => Type == CellType.Alive || Type == CellType.NewAlive;
+
+        [field:NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            return Type == CellType.Alive || Type == CellType.NewAlive;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

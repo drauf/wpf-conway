@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:conway="clr-namespace:Conway"
+             xmlns:d1="clr-namespace:Conway.Models"
              mc:Ignorable="d">
     <UserControl.Resources>
         <conway:CellDisplayToColorConverter x:Key="CellDisplayToColorConverter"/>
         <DataTemplate x:Key="DataTemplateForLabel">
-            <Button Tag="{Binding Index}" Click="Cell_Click" Height="14" Width="14" Margin="1,1,1,1">
+            <Button Tag="{Binding Index}" Click="Cell_Click" Height="14" Width="14" Margin="1,1,1,1"
+                    d:DataContext="{d1:Cell }">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>

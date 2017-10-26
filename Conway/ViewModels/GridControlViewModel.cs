@@ -15,8 +15,8 @@ namespace Conway.ViewModels
             List = _grid.GetAsObservableCollection();
         }
 
-        private ObservableCollection<ObservableCollection<CellDisplay>> _list;
-        public ObservableCollection<ObservableCollection<CellDisplay>> List
+        private ObservableCollection<ObservableCollection<Cell>> _list;
+        public ObservableCollection<ObservableCollection<Cell>> List
         {
             get => _list;
             set
