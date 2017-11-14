@@ -1,8 +1,6 @@
 # wpf-conway
 Conway's Game of Life implementation using WPF
 
-![screenshot of the application](https://github.com/drauf/wpf-conway/blob/master/screenshot.png?raw=true)
-
 ### Areas for improvement
 Currently Grid model contains a lot of logic - extract it to a separate class or move it to the view model.  
 The project contains only placeholders for tests, listed in the GridTest and LoadSaveServiceTest files. Those should be implemented.
